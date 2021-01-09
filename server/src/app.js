@@ -2,7 +2,7 @@ const express = require('express')
 const randomColor = require('randomcolor')
 const uuid = require('uuid')
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 4001
 
 const app = express()
 server = app.listen(port)
