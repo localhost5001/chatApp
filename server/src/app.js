@@ -1,14 +1,12 @@
 const express = require('express')
+const http = require('http')
 const randomColor = require('randomcolor')
 const uuid = require('uuid')
 
-const port = process.env.PORT || 4001
+const port = process.env.APP_PORT || 4001
 
 const app = express()
-server = app.listen(port)
-console.log('Server is listening on port: ' + port + '\n')
-
-console.log('Setting up socket.io...')
+const server = http.createServer(app)
 const io = require('socket.io')(server)
 
 const users = []
@@ -51,4 +49,6 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('typing', {username: socket.username})
     })
 })
-console.log('Done!\n')
+
+server.listen(port)
+console.log(`Server is listening on port ${port}`)
